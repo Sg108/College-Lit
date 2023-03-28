@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "932337002065",
+    "project_id": "codingbytes-2066e",
+    "storage_bucket": "codingbytes-2066e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:932337002065:android:5ec10259d2811fa85eba70",
+        "android_client_info": {
+          "package_name": "com.example.college_bytes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "932337002065-kf2ae8k0soeafn9d3rfo40l1lvhf4v01.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAoZC92EP1W_uwGl4gsMoREZWsTQ6fVec4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "932337002065-kf2ae8k0soeafn9d3rfo40l1lvhf4v01.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

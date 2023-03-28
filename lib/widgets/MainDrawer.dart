@@ -1,19 +1,22 @@
+import 'package:college_bytes/models/student_provider.dart';
 import 'package:college_bytes/screens/examination_details_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../screens/attendence_screen.dart';
 import '../screens/timetable_screen.dart';
 import '../screens/update_profile_screen.dart';
 import '../screens/registration_screen.dart';
 import '../screens/examination_details_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class MainDrawer extends StatelessWidget {
-  const MainDrawer({super.key});
+  MainDrawer();
   void tapHandler(BuildContext context, String route_path) {
     Navigator.of(context).pushNamed(route_path);
   }
 
-  final String username = 'Shivam Gupta';
-  final String useremail = '19103204@mail.jiit.ac.in';
+  //final String username = 'Shivam Gupta';
+
   final String pic_url =
       'https://steamuserimages-a.akamaihd.net/ugc/1658975992873119928/D51F3889E81F40389CD31A9D14CCB0E75431EC3D/?imw=512&&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false';
   Widget buildListTile(
@@ -59,19 +62,20 @@ class MainDrawer extends StatelessWidget {
                 children: [
                   CircleAvatar(
                     radius: 30,
-                    backgroundImage: NetworkImage(pic_url),
+                    backgroundImage:
+                        NetworkImage(Provider.of<Student>(context).pic),
                   ),
                   const SizedBox(width: 20),
                   Column(
                     children: [
                       const SizedBox(height: 12),
-                      Text(username,
+                      Text(Provider.of<Student>(context).name,
                           style: const TextStyle(
                             color: Colors.white,
                             fontSize: 20,
                           )),
                       const SizedBox(height: 8),
-                      Text(useremail,
+                      Text(Provider.of<Student>(context).email,
                           style: const TextStyle(
                             color: Colors.white70,
                           )),
@@ -92,7 +96,8 @@ class MainDrawer extends StatelessWidget {
               RegistrationScreen.routeName, context),
           const SizedBox(height: 20),
           Divider(color: Colors.white70),
-          buildListTile('Logout', Icons.login, '/', context),
+
+          // buildListTile('Logout', Icons.login, '/', context),
         ],
       ),
     ));
