@@ -18,19 +18,19 @@ class UpdateProfileScreen extends StatefulWidget {
 }
 
 class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
-  var nameController = TextEditingController();
-  var emailController = TextEditingController();
-  var batchController = TextEditingController();
-  var semesterController = TextEditingController();
-  var enrollController = TextEditingController();
+  final nameController = TextEditingController();
+  final emailController = TextEditingController();
+  final batchController = TextEditingController();
+  final semesterController = TextEditingController();
+  final enrollController = TextEditingController();
   bool mount = true;
   void initState() {
     //default text
     super.initState();
+    print("i");
   }
 
   void didChangeDependencies() {
-    super.didChangeDependencies();
     print("k");
     if (mount) {
       print("p");
@@ -40,8 +40,10 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
       batchController.text = Provider.of<Student>(context).batch;
       enrollController.text = Provider.of<Student>(context).enroll;
       semesterController.text = Provider.of<Student>(context).semester;
+
       mount = false;
     }
+    super.didChangeDependencies();
   }
 
   submit(BuildContext ctx) async {
@@ -53,6 +55,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
         );
       },
     );
+
     await FirebaseFirestore.instance
         .collection("userData")
         .doc(Provider.of<Student>(context, listen: false).id)
@@ -66,6 +69,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
     }, SetOptions(merge: true));
 
     Navigator.of(context).pop();
+
     Provider.of<Student>(ctx, listen: false).setData(
       nameController.text,
       emailController.text,
@@ -77,7 +81,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print(nameController.text);
+    // print(nameController.text);
     return Scaffold(
         appBar: AppBar(
           title: Center(child: const Text('Update Profile')),
@@ -91,12 +95,12 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
             )
           ],
         ),
-        body: Container(
-          padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
-          child: GestureDetector(
-              onTap: () {
-                FocusScope.of(context).unfocus();
-              },
+        body: GestureDetector(
+          onTap: () {
+            FocusScope.of(context).requestFocus(new FocusNode());
+          },
+          child: Container(
+              padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
               child: ListView(
                 children: [
                   Center(
@@ -136,23 +140,9 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                                   color: Colors.blue),
                               child: IconButton(
                                 onPressed: () async {
-                                  /*
-                * Step 1. Pick/Capture an image   (image_picker)
-                * Step 2. Upload the image to Firebase storage
-                * Step 3. Get the URL of the uploaded image
-                * Step 4. Store the image URL inside the corresponding
-                *         document of the database.
-                * Step 5. Display the image on the list
-                *
-                * */
-
-                                  /*Step 1:Pick image*/
-                                  //Install image_picker
-                                  //Import the corresponding library
-
                                   ImagePicker imagePicker = ImagePicker();
                                   XFile? file = await imagePicker.pickImage(
-                                      source: ImageSource.camera);
+                                      source: ImageSource.gallery);
                                   print('${file?.path}');
 
                                   if (file == null) return;
@@ -161,11 +151,6 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                                       .millisecondsSinceEpoch
                                       .toString();
 
-                                  /*Step 2: Upload to Firebase storage*/
-                                  //Install firebase_storage
-                                  //Import the library
-
-                                  //Get a reference to storage root
                                   Reference referenceRoot =
                                       FirebaseStorage.instance.ref();
                                   Reference referenceDirImages =
@@ -219,4 +204,4 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
   }
 }
 
-void initialize() async {}
+//void initialize() async {}

@@ -18,50 +18,62 @@ class _registerState extends State<register> {
 
   final passwordController = TextEditingController();
   final confirmpasswordController = TextEditingController();
+  final batchController = TextEditingController();
+  final nameController = TextEditingController();
+  final semesterController = TextEditingController();
+  final enrollController = TextEditingController();
   void create() async {
-    try {
-      showDialog(
-        context: context,
-        builder: (context) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        },
-      );
-      if (passwordController.text == confirmpasswordController.text) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      },
+    );
+    if (passwordController.text == confirmpasswordController.text) {
+      try {
         await FirebaseAuth.instance
             .createUserWithEmailAndPassword(
                 email: emailController.text, password: passwordController.text)
             .then((value) async {
           //print(value.user);
           Navigator.of(context).pop();
+
+          print("where");
           await FirebaseFirestore.instance
               .collection("userData")
               .doc(value.user?.uid)
               .set({
             "email": value.user?.email,
-            "name": "newUser",
-            "enroll": "",
-            "semester": "",
-            "batch": "",
+            "name": nameController.text,
+            "enroll": enrollController.text,
+            "semester": semesterController.text,
+            "batch": batchController.text,
             "id": value.user?.uid,
             "pic":
                 'https://steamuserimages-a.akamaihd.net/ugc/1658975992873119928/D51F3889E81F40389CD31A9D14CCB0E75431EC3D/?imw=512&&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false'
           });
+
+          print("here");
         });
-      } else {
+      } on FirebaseAuthException catch (e) {
         Navigator.of(context).pop();
-
-        showErrormsg("passwords dont match");
+        showErrormsg(e.code);
+        //print(e);
       }
-    } on FirebaseAuthException catch (e) {
-      Navigator.pop(context);
-      //Navigator.of(context).pop();
-      showErrormsg(e.toString());
-      print(e);
-    }
+    } else {
+      Navigator.of(context).pop();
 
+      showErrormsg("passwords dont match");
+    }
     //Navigator.of(context).pop();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
   }
 
   void showErrormsg(String st) {
@@ -85,67 +97,80 @@ class _registerState extends State<register> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Color.fromARGB(255, 198, 250, 9),
-        body: SingleChildScrollView(
-          child: SafeArea(
-              child: Center(
-            child: Column(
-              children: [
-                const SizedBox(height: 30),
-                const Icon(Icons.app_registration, size: 100),
-                const SizedBox(height: 30),
-                const Text('Create a new account here',
-                    style: TextStyle(
-                        color: Color.fromARGB(255, 92, 91, 91),
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold)),
-                const SizedBox(height: 25),
-                myTextField(emailController, 'email', false),
-                const SizedBox(height: 15),
-                myTextField(passwordController, 'password', true),
-                const SizedBox(height: 15),
-                myTextField(
-                    confirmpasswordController, 'confirm password', true),
-                const SizedBox(height: 15),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 30.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text('Forgot Password?',
-                          style: TextStyle(
-                            color: Color.fromARGB(255, 92, 91, 91),
-                            fontSize: 15,
-                          )),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 25),
-                MyButton(create, 'Create Account'),
-                const SizedBox(height: 25),
-                Padding(
-                  padding: const EdgeInsets.all(30.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text('Already a member? ',
-                          style: TextStyle(
-                            color: Color.fromARGB(255, 92, 91, 91),
-                            fontSize: 18,
-                          )),
-                      GestureDetector(
-                        onTap: widget.check,
-                        child: Text('Sign In Now',
+        body: GestureDetector(
+          onTap: () {
+            FocusScope.of(context).requestFocus(new FocusNode());
+          },
+          child: SingleChildScrollView(
+            child: SafeArea(
+                child: Center(
+              child: Column(
+                children: [
+                  const SizedBox(height: 30),
+                  const Icon(Icons.app_registration, size: 100),
+                  const SizedBox(height: 30),
+                  const Text('Create a new account here',
+                      style: TextStyle(
+                          color: Color.fromARGB(255, 92, 91, 91),
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold)),
+                  const SizedBox(height: 25),
+                  myTextField(emailController, 'email', false),
+                  const SizedBox(height: 15),
+                  myTextField(nameController, 'name', false),
+                  const SizedBox(height: 15),
+                  myTextField(passwordController, 'password', true),
+                  const SizedBox(height: 15),
+                  myTextField(
+                      confirmpasswordController, 'confirm password', true),
+                  const SizedBox(height: 15),
+                  myTextField(batchController, 'batch', false),
+                  const SizedBox(height: 15),
+                  myTextField(semesterController, 'semester', false),
+                  const SizedBox(height: 15),
+                  myTextField(enrollController, 'enrollment number', false),
+                  const SizedBox(height: 15),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text('Forgot Password?',
                             style: TextStyle(
-                              color: Color.fromARGB(147, 5, 29, 240),
+                              color: Color.fromARGB(255, 92, 91, 91),
+                              fontSize: 15,
+                            )),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 25),
+                  MyButton(create, 'Create Account'),
+                  const SizedBox(height: 25),
+                  Padding(
+                    padding: const EdgeInsets.all(30.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text('Already a member? ',
+                            style: TextStyle(
+                              color: Color.fromARGB(255, 92, 91, 91),
                               fontSize: 18,
                             )),
-                      ),
-                    ],
+                        GestureDetector(
+                          onTap: widget.check,
+                          child: Text('Sign In Now',
+                              style: TextStyle(
+                                color: Color.fromARGB(147, 5, 29, 240),
+                                fontSize: 18,
+                              )),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              ],
-            ),
-          )),
+                ],
+              ),
+            )),
+          ),
         ));
     ;
   }

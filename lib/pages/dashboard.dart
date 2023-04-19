@@ -23,12 +23,14 @@ class dashboard extends StatefulWidget {
 
 class _dashboardState extends State<dashboard> {
   //var _user = FirebaseAuth.instance.currentUser;
+  bool isLoading = true;
   bool first = true;
   var usernameController = TextEditingController();
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    getdata();
   }
 
   @override
@@ -36,13 +38,15 @@ class _dashboardState extends State<dashboard> {
     // TODO: implement didChangeDependencies
     super.didChangeDependencies();
     print("t");
-    if (first) {
-      getdata();
-      first = false;
-    }
+
+    // if (first) {
+    //   getdata();
+    //   first = false;
+    // }
   }
 
   void getdata() async {
+    // isLoading = false;
     await FirebaseFirestore.instance
         .collection("userData")
         .doc(widget.id)
@@ -54,50 +58,26 @@ class _dashboardState extends State<dashboard> {
             .initiate(widget.id, data['email']);
         Provider.of<Student>(context, listen: false).setData(data['name'],
             data['email'], data['batch'], data['enroll'], data['semester']);
-        // ...
+
+        // isLoading = false;
       },
       onError: (e) => print("Error getting document: $e"),
     );
-
+    print("there");
+    setState(() {
+      isLoading = false;
+    });
     // Navigator.of(context).pop();
   }
 
-  // void _addUsername(BuildContext context) {
-  //   showModalBottomSheet(
-  //       context: context,
-  //       builder: (bCtx) {
-  //         return GestureDetector(
-  //           onTap: () {},
-  //           child: Column(children: [
-  //             const SizedBox(height: 25),
-  //             myTextField(usernameController, 'username', false),
-  //             const SizedBox(height: 25),
-  //             GestureDetector(
-  //               onTap: editUser,
-  //               child: Container(
-  //                 padding: const EdgeInsets.all(25),
-  //                 margin: const EdgeInsets.symmetric(horizontal: 25),
-  //                 decoration: BoxDecoration(
-  //                   color: Colors.black,
-  //                   borderRadius: BorderRadius.circular(8),
-  //                 ),
-  //                 child: Center(
-  //                   child: Text(
-  //                     'edit username',
-  //                     style: const TextStyle(
-  //                       color: Colors.white,
-  //                       fontWeight: FontWeight.bold,
-  //                       fontSize: 16,
-  //                     ),
-  //                   ),
-  //                 ),
-  //               ),
-  //             )
-  //           ]),
-  //           behavior: HitTestBehavior.opaque,
-  //         );
-  //       });
-  // }
+  @override
+  void didUpdateWidget(covariant dashboard oldWidget) {
+    // TODO: implement didUpdateWidget
+    super.didUpdateWidget(oldWidget);
+    setState(() {
+      isLoading = false;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -117,6 +97,8 @@ class _dashboardState extends State<dashboard> {
             //     icon: Icon(Icons.add))
           ],
         ),
-        body: Center(child: Text('hi ${Provider.of<Student>(context).name}')));
+        body: isLoading
+            ? Center(child: const CircularProgressIndicator())
+            : Center(child: Text('hi ${Provider.of<Student>(context).name}')));
   }
 }
