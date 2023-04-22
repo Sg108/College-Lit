@@ -96,6 +96,7 @@ class _registerState extends State<register> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        resizeToAvoidBottomInset: true,
         backgroundColor: Color.fromARGB(255, 198, 250, 9),
         body: GestureDetector(
           onTap: () {
@@ -130,19 +131,6 @@ class _registerState extends State<register> {
                   const SizedBox(height: 15),
                   myTextField(enrollController, 'enrollment number', false),
                   const SizedBox(height: 15),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 30.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Text('Forgot Password?',
-                            style: TextStyle(
-                              color: Color.fromARGB(255, 92, 91, 91),
-                              fontSize: 15,
-                            )),
-                      ],
-                    ),
-                  ),
                   const SizedBox(height: 25),
                   MyButton(create, 'Create Account'),
                   const SizedBox(height: 25),

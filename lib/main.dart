@@ -1,3 +1,4 @@
+import 'package:college_bytes/pages/reset_Password.dart';
 import 'package:flutter/material.dart';
 
 import 'package:firebase_core/firebase_core.dart';
@@ -34,6 +35,7 @@ class MyApp extends StatelessWidget {
           UpdateProfileScreen.routeName: (_) => UpdateProfileScreen(),
           AttendenceScreen.routeName: (_) => AttendenceScreen(),
           TimeTableScreen.routeName: (_) => TimeTableScreen(),
+          Reset.routeName: (_) => Reset(),
         },
       ),
     );

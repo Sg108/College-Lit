@@ -71,13 +71,13 @@ class _dashboardState extends State<dashboard> {
   }
 
   @override
-  void didUpdateWidget(covariant dashboard oldWidget) {
-    // TODO: implement didUpdateWidget
-    super.didUpdateWidget(oldWidget);
-    setState(() {
-      isLoading = false;
-    });
-  }
+  // void didUpdateWidget(covariant dashboard oldWidget) {
+  //   // TODO: implement didUpdateWidget
+  //   super.didUpdateWidget(oldWidget);
+  //   setState(() {
+  //     isLoading = false;
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
