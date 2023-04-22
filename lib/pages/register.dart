@@ -97,7 +97,7 @@ class _registerState extends State<register> {
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomInset: true,
-        backgroundColor: Color.fromARGB(255, 198, 250, 9),
+        backgroundColor: Theme.of(context).colorScheme.background,
         body: GestureDetector(
           onTap: () {
             FocusScope.of(context).requestFocus(new FocusNode());

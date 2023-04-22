@@ -21,7 +21,7 @@ class myTextField extends StatelessWidget {
             enabledBorder: const OutlineInputBorder(
                 borderSide: BorderSide(color: Colors.white)),
             focusedBorder: const OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.grey)),
+                borderSide: BorderSide(color: Colors.white)),
             fillColor: Colors.grey.shade200,
             filled: true,
             //: controller.text,
@@ -53,7 +53,7 @@ class TxtField extends StatelessWidget {
           enabledBorder: const OutlineInputBorder(
               borderSide: BorderSide(color: Colors.white)),
           focusedBorder: const OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.grey)),
+              borderSide: BorderSide(color: Colors.grey), gapPadding: 50.0),
           fillColor: Colors.grey.shade200,
           filled: true,
           //: controller.text,

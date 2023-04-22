@@ -37,6 +37,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           // primarySwatch: Color(0xFF202328),
           visualDensity: VisualDensity.adaptivePlatformDensity,
+          iconTheme: IconThemeData(color: Color(0xFF63CF93)),
           colorScheme: ThemeData().colorScheme.copyWith(
                 primary: Color(0xFF202328),
                 secondary: Color(0xFF63CF93),

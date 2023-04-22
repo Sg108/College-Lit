@@ -1,3 +1,4 @@
+import 'package:college_bytes/constants.dart';
 import 'package:college_bytes/pages/reset_Password.dart';
 import 'package:flutter/material.dart';
 import '../widgets/myTextfields.dart';
@@ -64,7 +65,7 @@ class _loginState extends State<login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color.fromARGB(255, 6, 215, 243),
+        backgroundColor: Theme.of(context).colorScheme.background,
         body: GestureDetector(
           onTap: () {
             FocusScope.of(context).requestFocus(new FocusNode());
@@ -75,15 +76,19 @@ class _loginState extends State<login> {
               child: Column(
                 children: [
                   const SizedBox(height: 50),
-                  const Icon(Icons.login, size: 100),
+                  const Icon(Icons.login, size: 100, color: Color(0xFF63CF93)),
                   const SizedBox(height: 50),
                   const Text('Welcome back to College Bytes!',
                       style: TextStyle(
-                          color: Color.fromARGB(255, 92, 91, 91),
+                          color: kTextColor,
                           fontSize: 20,
                           fontWeight: FontWeight.bold)),
                   const SizedBox(height: 25),
-                  myTextField(emailController, 'email', false),
+                  myTextField(
+                    emailController,
+                    'email',
+                    false,
+                  ),
                   const SizedBox(height: 15),
                   myTextField(passwordController, 'password', true),
                   const SizedBox(height: 15),
@@ -120,8 +125,8 @@ class _loginState extends State<login> {
                           onTap: widget.check,
                           child: const Text('Register Now',
                               style: TextStyle(
-                                color: Color.fromARGB(255, 4, 2, 98),
-                                fontSize: 18,
+                                color: Color(0xFF63CF93),
+                                fontSize: 16,
                               )),
                         ),
                       ],
