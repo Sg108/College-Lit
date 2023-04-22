@@ -7,23 +7,27 @@ class myTextField extends StatelessWidget {
   myTextField(this.controller, this.hintTxt, this.obscureText);
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0),
-      child: TextField(
-        controller: controller,
-        obscureText: obscureText,
-        // initialValue: 'Complete the story from here...',
-        decoration: InputDecoration(
-          labelText: hintTxt,
-          enabledBorder: const OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.white)),
-          focusedBorder: const OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.grey)),
-          fillColor: Colors.grey.shade200,
-          filled: true,
-          //: controller.text,
+    return SizedBox(
+      height: 50,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+        child: TextField(
+          controller: controller,
+          obscureText: obscureText,
 
-          //hintStyle: TextStyle(color: Colors.grey[500])
+          // initialValue: 'Complete the story from here...',
+          decoration: InputDecoration(
+            labelText: hintTxt,
+            enabledBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.white)),
+            focusedBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.grey)),
+            fillColor: Colors.grey.shade200,
+            filled: true,
+            //: controller.text,
+
+            //hintStyle: TextStyle(color: Colors.grey[500])
+          ),
         ),
       ),
     );

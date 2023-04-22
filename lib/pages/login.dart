@@ -1,3 +1,4 @@
+import 'package:college_bytes/pages/reset_Password.dart';
 import 'package:flutter/material.dart';
 import '../widgets/myTextfields.dart';
 import '../widgets/myButton.dart';
@@ -14,6 +15,9 @@ class _loginState extends State<login> {
   final emailController = TextEditingController();
 
   final passwordController = TextEditingController();
+  void forgotPass() {
+    Navigator.of(context).pushNamed(Reset.routeName);
+  }
 
   void Signin() async {
     showDialog(
@@ -88,11 +92,14 @@ class _loginState extends State<login> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Text('Forgot Password?',
-                            style: TextStyle(
-                              color: Color.fromARGB(255, 92, 91, 91),
-                              fontSize: 15,
-                            )),
+                        TextButton(
+                          onPressed: forgotPass,
+                          child: Text('Forgot Password?',
+                              style: TextStyle(
+                                color: Color.fromARGB(255, 92, 91, 91),
+                                fontSize: 15,
+                              )),
+                        ),
                       ],
                     ),
                   ),
