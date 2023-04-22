@@ -9,6 +9,7 @@ import './screens/timetable_screen.dart';
 import './screens/update_profile_screen.dart';
 import './screens/registration_screen.dart';
 import './screens/examination_details_screen.dart';
+import './screens/welcome_screen.dart';
 import 'package:provider/provider.dart';
 import './models/student_provider.dart';
 
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
       providers: [ChangeNotifierProvider(create: (context) => Student())],
       child: MaterialApp(
         title: 'College Bytes',
-        home: IsAuth(),
+        home: WelcomeScreen(),
         initialRoute: '/',
         routes: {
           ExaminationDetailsScreen.routeName: (_) => ExaminationDetailsScreen(),

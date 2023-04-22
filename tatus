@@ -1,0 +1,68 @@
+[33mcommit a7945f980bccd57e056e65d8cb5b99ef82599dce[m[33m ([m[1;36mHEAD -> [m[1;32mnew_ui[m[33m, [m[1;32mmain[m[33m)[m
+Merge: 40eaf84 0f7430d
+Author: piyush67 <piyushsaxena666@gmail.com>
+Date:   Sat Apr 22 14:47:33 2023 +0530
+
+    Merge branch 'main' of github.com:Sg108/CollegeBytes
+
+[33mcommit 0f7430d94a3003de547fb1fc4e9ec5951d91465a[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: sg108 <guptashivamgzb@gmail.com>
+Date:   Sat Apr 22 14:46:23 2023 +0530
+
+    update
+
+[33mcommit 40eaf840c7acba49dd93966ad70f2dc88b67d4f2[m
+Merge: 3777351 c55bc20
+Author: piyush67 <piyushsaxena666@gmail.com>
+Date:   Wed Apr 19 19:04:01 2023 +0530
+
+    Merge branch 'main' of github.com:Sg108/CollegeBytes
+
+[33mcommit 3777351e1a20976d03ee630abe5dae6feec8d7fa[m
+Merge: a9f68c4 96c6f47
+Author: piyush67 <piyushsaxena666@gmail.com>
+Date:   Wed Apr 19 19:03:53 2023 +0530
+
+    added few changes
+
+[33mcommit c55bc20ef898f4653e0802c3e2c2884420b90b04[m
+Author: sg108 <guptashivamgzb@gmail.com>
+Date:   Sun Apr 2 15:17:13 2023 +0530
+
+    bug_fixes
+
+[33mcommit a9f68c4a044c5ec9e727534c0b735982b8f3e6d2[m
+Author: piyush67 <piyushsaxena666@gmail.com>
+Date:   Tue Mar 28 20:30:11 2023 +0530
+
+    updated code
+
+[33mcommit 96c6f477f4564a6fcb2b851a982fc9ffcfe36598[m
+Author: sg108 <guptashivamgzb@gmail.com>
+Date:   Tue Mar 28 20:21:19 2023 +0530
+
+    update profile
+
+[33mcommit c0fa3be16297f7f63376dbe0b1066510e58453b4[m
+Author: piyush67 <piyushsaxena666@gmail.com>
+Date:   Tue Mar 14 17:29:20 2023 +0530
+
+    added screens and models and drawer widget
+
+[33mcommit 6528c2828ac581a8f3aec7c34172743d4d092ab8[m
+Author: piyush67 <piyushsaxena666@gmail.com>
+Date:   Mon Mar 13 21:08:10 2023 +0530
+
+    added constructors in main.dart
+
+[33mcommit b9a6562f8c2c83e2e674a0001571f9ba0afea631[m
+Author: piyush67 <piyushsaxena666@gmail.com>
+Date:   Mon Mar 13 21:03:03 2023 +0530
+
+    gave title to the app
+
+[33mcommit 5099a58f5429d8c7a9fd90ba31ccb8e8ce7197fe[m
+Author: sg108 <guptashivamgzb@gmail.com>
+Date:   Mon Mar 13 20:40:08 2023 +0530
+
+    first_commit
