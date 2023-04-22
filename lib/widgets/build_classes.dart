@@ -1,5 +1,5 @@
-import 'package:college_app/constants.dart';
-import 'package:college_app/models/classes.dart';
+import '/constants.dart';
+import '/models/classes.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 

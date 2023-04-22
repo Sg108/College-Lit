@@ -1,5 +1,5 @@
-import 'package:college_app/constants.dart';
-import 'package:college_app/widgets/recent_alerts.dart';
+import '/constants.dart';
+import '/widgets/recent_alerts.dart';
 
 import 'package:flutter/material.dart';
 

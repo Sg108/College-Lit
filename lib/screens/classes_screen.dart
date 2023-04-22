@@ -1,7 +1,7 @@
-import 'package:college_app/constants.dart';
-import 'package:college_app/widgets/header.dart';
+import '/constants.dart';
+import '/widgets/header.dart';
 import 'package:flutter/material.dart';
-import 'package:college_app/widgets/build_classes.dart';
+import '/widgets/build_classes.dart';
 
 class ClassesScreen extends StatefulWidget {
   const ClassesScreen({super.key});

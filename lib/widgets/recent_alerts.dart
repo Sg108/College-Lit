@@ -1,8 +1,8 @@
-import 'package:college_app/constants.dart';
-import 'package:college_app/widgets/countdown_painter.dart';
+import '/constants.dart';
+import '/widgets/countdown_painter.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:college_app/models/alert.dart';
+import '/models/alert.dart';
 
 class RecentAlerts extends StatefulWidget {
   const RecentAlerts({super.key});

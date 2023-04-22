@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import 'package:college_bytes/pages/isauth.dart';
-import 'package:college_bytes/constants.dart';
-import 'package:college_bytes/widgets/bottom_navigation.dart';
+import '/pages/isauth.dart';
+import '/constants.dart';
+import '/widgets/bottom_navigation.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});

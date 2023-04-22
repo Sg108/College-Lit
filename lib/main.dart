@@ -1,9 +1,10 @@
-import 'package:college_bytes/pages/reset_Password.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:firebase_core/firebase_core.dart';
 import '../pages/isauth.dart';
 
+import 'package:college_bytes/pages/reset_Password.dart';
 import './screens/attendence_screen.dart';
 import './screens/timetable_screen.dart';
 import './screens/update_profile_screen.dart';
@@ -22,12 +23,26 @@ Future<void> main() async {
 
 class MyApp extends StatelessWidget {
   MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+        const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
+
     return MultiProvider(
       providers: [ChangeNotifierProvider(create: (context) => Student())],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'College Bytes',
+        theme: ThemeData(
+          // primarySwatch: Color(0xFF202328),
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+          colorScheme: ThemeData().colorScheme.copyWith(
+                primary: Color(0xFF202328),
+                secondary: Color(0xFF63CF93),
+                background: Color(0xFF12171D),
+              ),
+        ),
         home: WelcomeScreen(),
         initialRoute: '/',
         routes: {

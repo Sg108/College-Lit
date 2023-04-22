@@ -1,8 +1,8 @@
-import 'package:college_app/constants.dart';
+import '/constants.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/material.dart';
-import 'package:college_app/screens/home_screen.dart';
-import 'package:college_app/screens/classes_screen.dart';
+import '/screens/home_screen.dart';
+import '/screens/classes_screen.dart';
 
 class BottomNavigation extends StatefulWidget {
   const BottomNavigation({super.key});
