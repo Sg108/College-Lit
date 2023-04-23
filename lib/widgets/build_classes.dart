@@ -173,6 +173,7 @@ class _BuildClassesState extends State<BuildClasses> {
         size: 15.0,
       );
     } else if (c.isHappening) {
+      print('came here');
       return Container(
         margin: EdgeInsets.all(5.0),
         decoration: BoxDecoration(

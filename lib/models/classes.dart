@@ -14,24 +14,24 @@ List<Classes> classes = [
     subject: "Math",
     type: "Online Class",
     teacherName: "Julie Raybon",
-    time: DateTime.parse("2020-06-04 10:30:00"),
+    time: DateTime.parse("2023-04-22 12:30:00"),
   ),
   Classes(
     subject: "Physics",
     type: "Online Class",
     teacherName: "Robert Murray",
-    time: DateTime.parse("2020-06-04 14:30:00"),
+    time: DateTime.parse("2023-04-23 19:00:00"),
   ),
   Classes(
     subject: "German",
     type: "Online Class",
     teacherName: "Mary Peterson",
-    time: DateTime.parse("2023-04-12 00:00:00"),
+    time: DateTime.parse("2023-04-23 21:30:00"),
   ),
   Classes(
     subject: "History",
     type: "Online Class",
     teacherName: "Jim Brooke",
-    time: DateTime.parse("2020-06-06 07:30:00"),
+    time: DateTime.parse("2023-04-24 17:30:00"),
   ),
 ];
