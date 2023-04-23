@@ -99,7 +99,7 @@ class _loginState extends State<login> {
                       children: [
                         TextButton(
                           onPressed: forgotPass,
-                          child: Text('Forgot Password?',
+                          child: const Text('Forgot Password?',
                               style: TextStyle(
                                 color: Color.fromARGB(255, 92, 91, 91),
                                 fontSize: 15,

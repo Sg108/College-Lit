@@ -21,7 +21,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
     super.initState();
     _homeScreen = HomeScreen();
     _classesScreen = ClassesScreen();
-    _currentPage = _classesScreen as Widget;
+    _currentPage = _homeScreen as Widget;
     // _currentPage = _homeScreen as Widget;
   }
 
@@ -55,8 +55,8 @@ class _BottomNavigationState extends State<BottomNavigation> {
             setState(() => {
                   _selectedTab = tab,
                   _selectedTab == 0
-                      ? _currentPage = _classesScreen
-                      : _currentPage = _homeScreen
+                      ? _currentPage = _homeScreen
+                      : _currentPage = _classesScreen
                 });
           },
           items: [

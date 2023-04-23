@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import 'package:provider/provider.dart';
+import '../models/student_provider.dart';
+
 class Header extends StatelessWidget {
   const Header({super.key});
 
@@ -20,10 +23,12 @@ class Header extends StatelessWidget {
             fontSize: 30.0,
             fontWeight: FontWeight.bold,
           ),
+          textAlign: TextAlign.center,
         ),
-        trailing: const CircleAvatar(
+        trailing: CircleAvatar(
           radius: 25.0,
-          backgroundImage: AssetImage('assets/images/profile_pic.jpg'),
+          backgroundImage: NetworkImage('${Provider.of<Student>(context).pic}'),
+          //fit: BoxFit.contain
         ),
       ),
     );

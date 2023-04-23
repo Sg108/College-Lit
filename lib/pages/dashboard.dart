@@ -1,16 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:college_bytes/widgets/bottom_navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/student_provider.dart';
 import '../widgets/MainDrawer.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import '../screens/attendence_screen.dart';
-import '../screens/timetable_screen.dart';
-import '../screens/update_profile_screen.dart';
-import '../screens/registration_screen.dart';
-import '../screens/examination_details_screen.dart';
-import '../widgets/myTextfields.dart';
-import '../widgets/myButton.dart';
 
 class dashboard extends StatefulWidget {
   var id;
@@ -82,7 +76,7 @@ class _dashboardState extends State<dashboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        drawer: MainDrawer(),
+        // drawer: MainDrawer(),
         appBar: AppBar(
           actions: [
             IconButton(
@@ -99,6 +93,7 @@ class _dashboardState extends State<dashboard> {
         ),
         body: isLoading
             ? Center(child: const CircularProgressIndicator())
-            : Center(child: Text('hi ${Provider.of<Student>(context).name}')));
+            : BottomNavigation());
+    // : Center(child: Text('hi ${Provider.of<Student>(context).name}')));
   }
 }
