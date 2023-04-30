@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/material.dart';
 import '/screens/home_screen.dart';
 import '/screens/classes_screen.dart';
+import 'package:college_bytes/screens/grades_input.dart';
 
 class BottomNavigation extends StatefulWidget {
   const BottomNavigation({super.key});
@@ -16,11 +17,13 @@ class _BottomNavigationState extends State<BottomNavigation> {
   var _currentPage;
   var _homeScreen;
   var _classesScreen;
+  var _inputScreen;
   @override
   void initState() {
     super.initState();
     _homeScreen = HomeScreen();
     _classesScreen = ClassesScreen();
+    _inputScreen = GradesInput();
     _currentPage = _homeScreen as Widget;
     // _currentPage = _homeScreen as Widget;
   }
@@ -52,12 +55,14 @@ class _BottomNavigationState extends State<BottomNavigation> {
           backgroundColor: Theme.of(context).colorScheme.background,
           currentIndex: _selectedTab,
           onTap: (int tab) {
-            setState(() => {
-                  _selectedTab = tab,
-                  _selectedTab == 0
-                      ? _currentPage = _homeScreen
-                      : _currentPage = _classesScreen
-                });
+            setState(() {
+              _selectedTab = tab;
+              if (_selectedTab == 0)
+                _currentPage = _homeScreen;
+              else if (_selectedTab == 1)
+                _currentPage = _classesScreen;
+              else if (_selectedTab == 2) _currentPage = _inputScreen;
+            });
           },
           items: [
             BottomNavigationBarItem(
