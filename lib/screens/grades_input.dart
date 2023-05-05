@@ -1,3 +1,5 @@
+import 'package:college_bytes/constants.dart';
+import 'package:college_bytes/widgets/header.dart';
 import 'package:flutter/material.dart';
 
 import 'package:college_bytes/screens/courses_recommended_screen.dart';
@@ -184,151 +186,212 @@ class _GradesInputState extends State<GradesInput> {
   @override
   Widget build(BuildContext context) {
     var recommendedScreen = RecommendedScreen;
-    return Scaffold(
-      appBar: AppBar(
-          title: Text("Subjects Registration"),
-          automaticallyImplyLeading: false),
-      body: Container(
-        padding: EdgeInsets.all(16.0),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  Expanded(
-                    child: Column(
-                      children: [
-                        for (int i = 0; i < _courses.length; i += 3)
-                          Padding(
-                            padding: EdgeInsets.symmetric(vertical: 8.0),
-                            child: Row(
-                              children: [
-                                Expanded(
-                                  child: Column(
-                                    children: [
-                                      Text(_courses[i]),
-                                      SizedBox(height: 8.0),
-                                      TextFormField(
-                                        controller: _gradeControllers[i],
-                                        keyboardType: TextInputType.number,
-                                        decoration: InputDecoration(
-                                          border: OutlineInputBorder(),
+    return Container(
+      padding: EdgeInsets.all(16.0),
+      child: ListView(
+        children: [
+          Header(),
+          SizedBox(height: 35.0),
+          // Text('${grades}'),
+
+          Container(
+            padding: EdgeInsets.all(16.0),
+            decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.primary,
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(50.0),
+                    topRight: Radius.circular(50.0))),
+            child: Column(
+              children: [
+                Text('Enter Grades Obtained in Current Semester',
+                    style: TextStyle(color: Colors.white, fontSize: 18.0)),
+                SizedBox(height: 15.0),
+                Text('(Between 1 and 10)', style: TextStyle(color: kTextColor)),
+                SizedBox(height: 15.0),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Column(
+                        children: [
+                          for (int i = 0; i < _courses.length; i += 3)
+                            Padding(
+                              padding: EdgeInsets.symmetric(vertical: 8.0),
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    child: Column(
+                                      children: [
+                                        Text(_courses[i],
+                                            style:
+                                                TextStyle(color: Colors.white)),
+                                        SizedBox(height: 8.0),
+                                        TextFormField(
+                                          style: TextStyle(color: Colors.white),
+                                          cursorColor: Colors.white,
+                                          controller: _gradeControllers[i],
+                                          keyboardType: TextInputType.number,
+                                          decoration: InputDecoration(
+                                            border: OutlineInputBorder(),
+                                            enabledBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                  color: Colors.grey),
+                                            ),
+                                            focusedBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                  color: Theme.of(context)
+                                                      .colorScheme
+                                                      .secondary),
+                                            ),
+                                          ),
                                         ),
+                                      ],
+                                    ),
+                                  ),
+                                  SizedBox(width: 16.0),
+                                  if (i + 1 < _courses.length)
+                                    Expanded(
+                                      child: Column(
+                                        children: [
+                                          Text(_courses[i + 1],
+                                              style: TextStyle(
+                                                  color: Colors.white)),
+                                          SizedBox(height: 8.0),
+                                          TextFormField(
+                                            style:
+                                                TextStyle(color: Colors.white),
+                                            cursorColor: Colors.white,
+                                            controller:
+                                                _gradeControllers[i + 1],
+                                            keyboardType: TextInputType.number,
+                                            decoration: InputDecoration(
+                                              border: OutlineInputBorder(),
+                                              enabledBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                    color: Colors.grey),
+                                              ),
+                                              focusedBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                    color: Theme.of(context)
+                                                        .colorScheme
+                                                        .secondary),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
                                       ),
-                                    ],
-                                  ),
-                                ),
-                                SizedBox(width: 16.0),
-                                if (i + 1 < _courses.length)
-                                  Expanded(
-                                    child: Column(
-                                      children: [
-                                        Text(_courses[i + 1]),
-                                        SizedBox(height: 8.0),
-                                        TextFormField(
-                                          controller: _gradeControllers[i + 1],
-                                          keyboardType: TextInputType.number,
-                                          decoration: InputDecoration(
-                                            border: OutlineInputBorder(),
-                                          ),
-                                        ),
-                                      ],
                                     ),
-                                  ),
-                                SizedBox(width: 16.0),
-                                if (i + 2 < _courses.length)
-                                  Expanded(
-                                    child: Column(
-                                      children: [
-                                        Text(_courses[i + 2]),
-                                        SizedBox(height: 8.0),
-                                        TextFormField(
-                                          controller: _gradeControllers[i + 2],
-                                          keyboardType: TextInputType.number,
-                                          decoration: InputDecoration(
-                                            border: OutlineInputBorder(),
+                                  SizedBox(width: 16.0),
+                                  if (i + 2 < _courses.length)
+                                    Expanded(
+                                      child: Column(
+                                        children: [
+                                          Text(_courses[i + 2],
+                                              style: TextStyle(
+                                                  color: Colors.white)),
+                                          SizedBox(height: 8.0),
+                                          TextFormField(
+                                            style:
+                                                TextStyle(color: Colors.white),
+                                            cursorColor: Colors.white,
+                                            controller:
+                                                _gradeControllers[i + 2],
+                                            keyboardType: TextInputType.number,
+                                            decoration: InputDecoration(
+                                              border: OutlineInputBorder(),
+                                              enabledBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                    color: Colors.grey),
+                                              ),
+                                              focusedBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                    color: Theme.of(context)
+                                                        .colorScheme
+                                                        .secondary),
+                                              ),
+                                            ),
                                           ),
-                                        ),
-                                      ],
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                              ],
+                                ],
+                              ),
                             ),
-                          ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(height: 25.0),
-              ElevatedButton(
-                onPressed: () async {
-                  showDialog(
-                    context: context,
-                    builder: (context) {
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    },
-                  );
-                  grades = {};
-                  for (int i = 0; i < _courses.length; i++) {
-                    grades[_courses[i]] = _gradeControllers[i].text;
-                  }
-                  setState(() {});
-
-                  await apicall1();
-
-                  Navigator.of(context).pop();
-                  print(recommendations);
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => RecommendedScreen(),
-                      settings: RouteSettings(
-                        arguments: recommendations,
+                        ],
                       ),
                     ),
-                  );
-                },
-                child: Text('Recommendations Using Collaborative Filtering'),
-              ),
-              SizedBox(height: 5.0),
-              ElevatedButton(
-                onPressed: () async {
-                  showDialog(
-                    context: context,
-                    builder: (context) {
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    },
-                  );
-                  grades = {};
-                  for (int i = 0; i < _courses.length; i++) {
-                    grades[_courses[i]] = _gradeControllers[i].text;
-                  }
-                  setState(() {});
-
-                  await apicall2();
-
-                  Navigator.of(context).pop();
-                  print(recommendations);
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => RecommendedScreen(),
-                      settings: RouteSettings(
-                        arguments: recommendations,
-                      ),
-                    ),
-                  );
-                },
-                child: Text('Recommendations using Matrix Factorization'),
-              )
-            ],
+                  ],
+                ),
+              ],
+            ),
           ),
-        ),
+          SizedBox(height: 20.0),
+
+          ElevatedButton(
+            onPressed: () async {
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                },
+              );
+              grades = {};
+              for (int i = 0; i < _courses.length; i++) {
+                grades[_courses[i]] = _gradeControllers[i].text;
+              }
+              setState(() {});
+
+              await apicall1();
+
+              Navigator.of(context).pop();
+              print(recommendations);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => RecommendedScreen(),
+                  settings: RouteSettings(
+                    arguments: recommendations,
+                  ),
+                ),
+              );
+            },
+            child: Text('Recommendations Using Collaborative Filtering'),
+          ),
+          SizedBox(height: 5.0),
+          ElevatedButton(
+            onPressed: () async {
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                },
+              );
+              grades = {};
+              for (int i = 0; i < _courses.length; i++) {
+                grades[_courses[i]] = _gradeControllers[i].text;
+              }
+              setState(() {});
+
+              await apicall2();
+
+              Navigator.of(context).pop();
+              print(recommendations);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => RecommendedScreen(),
+                  settings: RouteSettings(
+                    arguments: recommendations,
+                  ),
+                ),
+              );
+            },
+            child: Text('Recommendations using Matrix Factorization'),
+          )
+        ],
       ),
     );
   }
