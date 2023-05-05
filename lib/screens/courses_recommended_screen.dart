@@ -14,44 +14,49 @@ class RecommendedScreen extends StatelessWidget {
     print(args);
     print(args.runtimeType);
     return Scaffold(
-        appBar: AppBar(
-          title: Text('View Recommendations'),
-        ),
-        body: Container(
-            padding: EdgeInsets.fromLTRB(30.0, 40.0, 0, 10.0),
-            width: MediaQuery.of(context).size.width,
-            decoration:
-                BoxDecoration(color: Theme.of(context).colorScheme.primary),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text("Recommendation Order - ",
-                    style: TextStyle(color: Colors.white, fontSize: 26.0)),
-                SizedBox(height: 15.0),
-                Text('( from highest to lowest )',
-                    style: TextStyle(fontSize: 16.0, color: Colors.grey)),
-                SizedBox(
-                  height: 30,
-                ),
-                ...args.map(
-                  (rec) => Padding(
-                    padding: const EdgeInsets.all(18.0),
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.arrow_right,
-                          color: Colors.white,
-                          size: 25.0,
-                        ),
-                        Text(
+      appBar: AppBar(
+        title: Text('View Recommendations'),
+      ),
+      body: Container(
+          padding: EdgeInsets.fromLTRB(30.0, 40.0, 0, 10.0),
+          width: MediaQuery.of(context).size.width,
+          decoration:
+              BoxDecoration(color: Theme.of(context).colorScheme.primary),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text("Recommendation Order - ",
+                  style: TextStyle(color: Colors.white, fontSize: 26.0)),
+              SizedBox(height: 15.0),
+              Text('( from highest to lowest )',
+                  style: TextStyle(fontSize: 16.0, color: Colors.grey)),
+              SizedBox(
+                height: 30,
+              ),
+              ...args.map(
+                (rec) => Padding(
+                  padding: const EdgeInsets.all(18.0),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.arrow_right,
+                        color: Colors.white,
+                        size: 25.0,
+                      ),
+                      Container(
+                        width: 300,
+                        child: Text(
                           rec,
                           style: TextStyle(color: Colors.white, fontSize: 20.0),
+                          maxLines: 2,
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                )
-              ], //
-            )));
+                ),
+              )
+            ], //
+          )),
+    );
   }
 }
