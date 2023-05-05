@@ -32,26 +32,26 @@ class _ClassesScreenState extends State<ClassesScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  Text('02', style: kCalendarDay),
                   Text('03', style: kCalendarDay),
                   Text('04', style: kCalendarDay),
+                  Text('05', style: kCalendarDay),
                   Text(
-                    '05',
+                    '06',
                     style: kCalendarDay.copyWith(
                       color: Colors.white,
                       fontSize: 17.0,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
-                  Text('06', style: kCalendarDay),
                   Text('07', style: kCalendarDay),
                   Text('08', style: kCalendarDay),
+                  Text('09', style: kCalendarDay),
                 ],
               ),
               const Padding(
                 padding: EdgeInsets.only(top: 5.0),
                 child: Text(
-                  'THU',
+                  'SAT',
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 17.0,
