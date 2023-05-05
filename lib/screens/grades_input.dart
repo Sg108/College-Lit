@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 
 import 'package:college_bytes/screens/courses_recommended_screen.dart';
+import 'package:http/http.dart' as http;
+
+import 'dart:convert';
+
+import 'package:provider/provider.dart';
+
+import '../models/student_provider.dart';
 
 class GradesInput extends StatefulWidget {
   @override
@@ -8,7 +15,8 @@ class GradesInput extends StatefulWidget {
 }
 
 class _GradesInputState extends State<GradesInput> {
-  int sem = 5;
+  int sem = 0;
+  bool first = true;
   final Map<dynamic, Map<dynamic, List<dynamic>>> _allCourses = {
     1: {
       'core': [
@@ -54,8 +62,6 @@ class _GradesInputState extends State<GradesInput> {
         'Digital Systems',
         'Algorithms and Problem Solving',
         'Environmental Science',
-        'Digital Systems Lab',
-        'Algorithms and Problem Solving Lab',
         'Life Skills'
       ],
       'elective': []
@@ -63,8 +69,6 @@ class _GradesInputState extends State<GradesInput> {
     5: {
       'core': [
         'Computer Organisation and Architecture',
-        'Minor Project-1',
-        'Open Source Software lab',
         'Operating Systems and Systems Programming',
         'Information Security Lab',
         'Indian Constitution and Traditional Knowledge'
@@ -81,12 +85,8 @@ class _GradesInputState extends State<GradesInput> {
     6: {
       'core': [
         'Computer Networks and Internet of Things',
-        'Computer Networks and Internet of Things Lab',
         'Software Engineering',
         'Artificial Intelligence',
-        'Software Engineering Lab',
-        'Artifical Intelligence Lab',
-        'Minor Project -2'
       ],
       'elective': [
         'Sensor Technology & Android Programming',
@@ -98,9 +98,9 @@ class _GradesInputState extends State<GradesInput> {
       ]
     },
     7: {
-      'core': ['Major Project Part-1', 'Summer Training Viva'],
+      'core': [],
       'elective': [
-        'Advanced Blockchain : A game theoretic view',
+        'Advanced Blockchain',
         'Big Data with Hadoop and Spark',
         'Introduction to Deep Learning',
         'Cryptography and its Applications',
@@ -109,12 +109,12 @@ class _GradesInputState extends State<GradesInput> {
       ]
     },
     8: {
-      'core': ['Major Project Part-2'],
+      'core': [],
       'elective': [
         'Optimization Techniques',
         'Artificial Intelligence for Healthcare',
-        'Cloud Computing Essentials: Azure, AWS and Google Cloud',
-        'Agile: Software development and processes',
+        'Cloud Computing Essentials',
+        'Agile',
         'Kubernetes',
         'International Studies'
       ]
@@ -123,22 +123,65 @@ class _GradesInputState extends State<GradesInput> {
 
   List<TextEditingController> _gradeControllers = [];
   List<String> _courses = [];
-  List<double> grades = [];
+  Map grades = {};
+  List<dynamic> recommendations = [];
   @override
   void initState() {
     super.initState();
-    for (int i = 0; i < _allCourses[sem]!['core']!.length; i++) {
-      _courses.add(_allCourses[sem]!['core']![i]);
-      _gradeControllers.add(TextEditingController());
+    print("k");
+  }
+
+  void didChangeDependencies() {
+    print(first);
+    if (first) {
+      sem = Provider.of<Student>(context).semester;
+      print(sem);
+      for (int i = 0; i < _allCourses[sem]!['core']!.length; i++) {
+        _courses.add(_allCourses[sem]!['core']![i]);
+        _gradeControllers.add(TextEditingController());
+      }
+      for (int i = 0; i < _allCourses[sem]!['elective']!.length; i++) {
+        _courses.add(_allCourses[sem]!['elective']![i]);
+        _gradeControllers.add(TextEditingController());
+      }
+      first = false;
     }
-    for (int i = 0; i < _allCourses[sem]!['elective']!.length; i++) {
-      _courses.add(_allCourses[sem]!['elective']![i]);
-      _gradeControllers.add(TextEditingController());
-    }
+    super.didChangeDependencies();
+  }
+
+  apicall1() async {
+    var url = Uri.parse('https://collegebytesapi.azurewebsites.net/collabf');
+    Map data = {
+      "grades": grades,
+      "courses": sem == 8 ? [] : _allCourses[sem + 1]!['elective']
+    };
+    var response = await http.post(url,
+        headers: {"Content-Type": "application/json"}, body: jsonEncode(data));
+    Map<String, dynamic> rec = await jsonDecode(response.body);
+
+    setState(() {
+      recommendations = rec['recommendations'] as List<dynamic>;
+    });
+  }
+
+  apicall2() async {
+    var url = Uri.parse('https://collegebytesapi.azurewebsites.net/matrixf');
+    Map data = {
+      "grades": grades,
+      "courses": sem == 8 ? [] : _allCourses[sem + 1]!['elective']
+    };
+    var response = await http.post(url,
+        headers: {"Content-Type": "application/json"}, body: jsonEncode(data));
+    Map<String, dynamic> rec = await jsonDecode(response.body);
+
+    setState(() {
+      recommendations = rec['recommendations'] as List<dynamic>;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
+    var recommendedScreen = RecommendedScreen;
     return Scaffold(
       appBar: AppBar(
           title: Text("Subjects Registration"),
@@ -148,6 +191,7 @@ class _GradesInputState extends State<GradesInput> {
         child: SingleChildScrollView(
           child: Column(
             children: [
+              Text('${grades}'),
               Row(
                 children: [
                   Expanded(
@@ -217,18 +261,70 @@ class _GradesInputState extends State<GradesInput> {
               ),
               SizedBox(height: 25.0),
               ElevatedButton(
-                onPressed: () {
+                onPressed: () async {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    },
+                  );
+                  grades = {};
                   for (int i = 0; i < _courses.length; i++) {
-                    grades.add(double.parse(_gradeControllers[i].text));
+                    grades[_courses[i]] = _gradeControllers[i].text;
                   }
                   setState(() {});
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (_) => RecommendedScreen()));
+
+                  await apicall1();
+
+                  Navigator.of(context).pop();
+                  print(recommendations);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => RecommendedScreen(),
+                      settings: RouteSettings(
+                        arguments: recommendations,
+                      ),
+                    ),
+                  );
                 },
-                child: Text('Submit'),
+                child: Text('Recommendations Using Collaborative Filtering'),
               ),
-              SizedBox(height: 20),
-              Text('${grades}')
+              SizedBox(height: 25.0),
+              ElevatedButton(
+                onPressed: () async {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    },
+                  );
+                  grades = {};
+                  for (int i = 0; i < _courses.length; i++) {
+                    grades[_courses[i]] = _gradeControllers[i].text;
+                  }
+                  setState(() {});
+
+                  await apicall2();
+
+                  Navigator.of(context).pop();
+                  print(recommendations);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => RecommendedScreen(),
+                      settings: RouteSettings(
+                        arguments: recommendations,
+                      ),
+                    ),
+                  );
+                },
+                child: Text('Recommendations using Matrix Factorization'),
+              )
             ],
           ),
         ),

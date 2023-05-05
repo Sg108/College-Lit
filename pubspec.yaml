@@ -41,7 +41,12 @@ dependencies:
   cloud_firestore:
   image_picker:
   flutter_svg: ^2.0.4
+<<<<<<< HEAD
   awesome_notifications: ^0.7.4+1
+=======
+  http:
+  convert: ^3.1.1
+>>>>>>> 1c72e39eb2de3925bb0f54ced381d00bcb084b79
   # dev_dependencies:
   #   flutter_test:
   #     sdk:

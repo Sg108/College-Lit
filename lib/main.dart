@@ -13,7 +13,11 @@ import './screens/examination_details_screen.dart';
 import './screens/welcome_screen.dart';
 import 'package:provider/provider.dart';
 import './models/student_provider.dart';
+<<<<<<< HEAD
 import 'package:awesome_notifications/awesome_notifications.dart';
+=======
+import './screens/courses_recommended_screen.dart';
+>>>>>>> 1c72e39eb2de3925bb0f54ced381d00bcb084b79
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -64,6 +68,7 @@ class MyApp extends StatelessWidget {
           AttendenceScreen.routeName: (_) => AttendenceScreen(),
           TimeTableScreen.routeName: (_) => TimeTableScreen(),
           Reset.routeName: (_) => Reset(),
+          //RecommendedScreen.routeName: (_) => RecommendedScreen(),
         },
       ),
     );

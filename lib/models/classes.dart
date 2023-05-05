@@ -20,7 +20,7 @@ List<Classes> classes = [
     subject: "Physics",
     type: "Online Class",
     teacherName: "Robert Murray",
-    time: DateTime.parse("2023-05-05 13:30:00"),
+    time: DateTime.parse("2023-05-05 14:00:00"),
   ),
   Classes(
     subject: "German",

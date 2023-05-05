@@ -9,11 +9,11 @@ List<Alert> recentAlerts = [
   Alert(
     title: 'College Fest',
     subject: 'Impressions 2023',
-    time: DateTime.parse('2023-04-23 18:30:00'),
+    time: DateTime.parse('2023-05-05 17:30:00'),
   ),
   Alert(
-    title: 'IEEE',
-    subject: 'Hub Orientation',
-    time: DateTime.parse('2023-04-24 07:15:00'),
+    title: 'Fourth Years Farewell',
+    subject: 'Farewell 2023',
+    time: DateTime.parse('2023-05-10 08:00:00'),
   )
 ];
