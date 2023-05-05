@@ -2,6 +2,7 @@ import '/constants.dart';
 import '/models/classes.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:awesome_notifications/awesome_notifications.dart';
 
 class BuildClasses extends StatefulWidget {
   const BuildClasses({super.key});
@@ -10,8 +11,55 @@ class BuildClasses extends StatefulWidget {
   State<BuildClasses> createState() => _BuildClassesState();
 }
 
+var n_title, n_body;
+Future<void> scheduleNotification() async {
+  await AwesomeNotifications().createNotification(
+    content: NotificationContent(
+      id: 0,
+      channelKey: 'important_notifications',
+      title: n_title,
+      body: n_body,
+      wakeUpScreen: true,
+      category: NotificationCategory.Reminder,
+      // notificationLayout: NotificationLayout.BigPicture,
+      // bigPicture: 'asset://assets/images/delivery.jpeg',
+      payload: {'uuid': 'uuid-test'},
+      autoDismissible: false,
+      // bigPicture: 'https://example.com/image.png',
+      // notificationLayout: NotificationLayout.BigPicture,
+    ),
+    schedule: NotificationCalendar.fromDate(
+      date: DateTime.now(),
+      // hour: 16,
+      // minute: 0,
+      // second: 0,
+
+      repeats: true,
+      allowWhileIdle: true,
+    ),
+  );
+}
+
+_triggerNotification(@required String notification_title,
+    @required String notification_body) async {
+  print('idhar bhi aaaya hai');
+
+  n_title = notification_title;
+  n_body = notification_body;
+  await scheduleNotification();
+}
+
 class _BuildClassesState extends State<BuildClasses> {
   final DateFormat dateFormat = DateFormat('hh:mm a');
+  @override
+  void initState() {
+    AwesomeNotifications().isNotificationAllowed().then((isAllowed) {
+      if (!isAllowed)
+        AwesomeNotifications().requestPermissionToSendNotifications();
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
@@ -19,6 +67,7 @@ class _BuildClassesState extends State<BuildClasses> {
       itemCount: classes.length,
       itemBuilder: (BuildContext context, int index) {
         Classes c = classes[index];
+
         _getStatus(c);
         return Column(
           children: <Widget>[
@@ -140,6 +189,10 @@ class _BuildClassesState extends State<BuildClasses> {
   _getStatus(Classes c) {
     DateTime now = DateTime.now();
     DateTime finishedTime = c.time!.add(const Duration(hours: 1));
+    if (now.difference(c.time as DateTime).inMinutes >= -30) {
+      print('idhar aaya hai');
+      _triggerNotification(c.subject as String, 'class in ${c.time} minutes');
+    }
     if (now.difference(c.time as DateTime).inMinutes >= 59)
       c.isPassed = true;
     else if (now.difference(c.time as DateTime).inMinutes <= 59 &&

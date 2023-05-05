@@ -13,11 +13,22 @@ import './screens/examination_details_screen.dart';
 import './screens/welcome_screen.dart';
 import 'package:provider/provider.dart';
 import './models/student_provider.dart';
+import 'package:awesome_notifications/awesome_notifications.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-
+  await AwesomeNotifications().initialize(
+    null,
+    [
+      NotificationChannel(
+        channelKey: 'important_notifications',
+        channelName: 'notifications_channel',
+        channelDescription: 'notification channel for classes and events',
+      ),
+    ],
+    debug: true,
+  );
   runApp(MyApp());
 }
 

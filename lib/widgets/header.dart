@@ -1,3 +1,4 @@
+import 'package:college_bytes/screens/update_profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -25,10 +26,20 @@ class Header extends StatelessWidget {
           ),
           textAlign: TextAlign.center,
         ),
-        trailing: CircleAvatar(
-          radius: 25.0,
-          backgroundImage: NetworkImage('${Provider.of<Student>(context).pic}'),
-          //fit: BoxFit.contain
+        trailing: GestureDetector(
+          child: CircleAvatar(
+            radius: 25.0,
+            backgroundImage:
+                NetworkImage('${Provider.of<Student>(context).pic}'),
+            //fit: BoxFit.contain
+          ),
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const UpdateProfileScreen()),
+            );
+          },
         ),
       ),
     );

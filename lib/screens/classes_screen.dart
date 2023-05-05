@@ -21,7 +21,7 @@ class _ClassesScreenState extends State<ClassesScreen> {
           child: Column(
             children: <Widget>[
               const Text(
-                'Jun',
+                'May',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 18.0,
@@ -32,20 +32,20 @@ class _ClassesScreenState extends State<ClassesScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  Text('01', style: kCalendarDay),
                   Text('02', style: kCalendarDay),
                   Text('03', style: kCalendarDay),
+                  Text('04', style: kCalendarDay),
                   Text(
-                    '04',
+                    '05',
                     style: kCalendarDay.copyWith(
                       color: Colors.white,
                       fontSize: 17.0,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
-                  Text('05', style: kCalendarDay),
                   Text('06', style: kCalendarDay),
                   Text('07', style: kCalendarDay),
+                  Text('08', style: kCalendarDay),
                 ],
               ),
               const Padding(

@@ -4,7 +4,9 @@
         android:label="college_bytes"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
-       
+        <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM"/>
+        <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
+        <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"
