@@ -2,7 +2,7 @@ import 'package:college_bytes/models/student_provider.dart';
 import 'package:college_bytes/screens/examination_details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../screens/attendence_screen.dart';
+import '../screens/attendance_screen.dart';
 import '../screens/timetable_screen.dart';
 import '../screens/update_profile_screen.dart';
 import '../screens/registration_screen.dart';
@@ -87,7 +87,7 @@ class MainDrawer extends StatelessWidget {
           buildListTile('Update Profile', Icons.person,
               UpdateProfileScreen.routeName, context),
           buildListTile(
-              'Attendence', Icons.percent, AttendenceScreen.routeName, context),
+              'Attendence', Icons.percent, AttendanceScreen.routeName, context),
           buildListTile(
               'Time Table', Icons.schedule, TimeTableScreen.routeName, context),
           buildListTile('Examination Details', Icons.school,

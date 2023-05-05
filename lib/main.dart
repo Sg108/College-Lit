@@ -5,7 +5,7 @@ import 'package:firebase_core/firebase_core.dart';
 import '../pages/isauth.dart';
 
 import 'package:college_bytes/pages/reset_Password.dart';
-import './screens/attendence_screen.dart';
+import 'screens/attendance_screen.dart';
 import './screens/timetable_screen.dart';
 import './screens/update_profile_screen.dart';
 import './screens/registration_screen.dart';
@@ -13,11 +13,8 @@ import './screens/examination_details_screen.dart';
 import './screens/welcome_screen.dart';
 import 'package:provider/provider.dart';
 import './models/student_provider.dart';
-<<<<<<< HEAD
 import 'package:awesome_notifications/awesome_notifications.dart';
-=======
 import './screens/courses_recommended_screen.dart';
->>>>>>> 1c72e39eb2de3925bb0f54ced381d00bcb084b79
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -65,7 +62,7 @@ class MyApp extends StatelessWidget {
           ExaminationDetailsScreen.routeName: (_) => ExaminationDetailsScreen(),
           RegistrationScreen.routeName: (_) => RegistrationScreen(),
           UpdateProfileScreen.routeName: (_) => UpdateProfileScreen(),
-          AttendenceScreen.routeName: (_) => AttendenceScreen(),
+          AttendanceScreen.routeName: (_) => AttendanceScreen(),
           TimeTableScreen.routeName: (_) => TimeTableScreen(),
           Reset.routeName: (_) => Reset(),
           //RecommendedScreen.routeName: (_) => RecommendedScreen(),

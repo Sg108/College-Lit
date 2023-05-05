@@ -1,6 +1,7 @@
 import '/constants.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/material.dart';
+import 'package:college_bytes/screens/attendance_screen.dart';
 import '/screens/home_screen.dart';
 import '/screens/classes_screen.dart';
 import 'package:college_bytes/screens/grades_input.dart';
@@ -18,12 +19,14 @@ class _BottomNavigationState extends State<BottomNavigation> {
   var _homeScreen;
   var _classesScreen;
   var _inputScreen;
+  var _attdScreen;
   @override
   void initState() {
     super.initState();
     _homeScreen = HomeScreen();
     _classesScreen = ClassesScreen();
     _inputScreen = GradesInput();
+    _attdScreen = AttendanceScreen();
     _currentPage = _homeScreen as Widget;
     // _currentPage = _homeScreen as Widget;
   }
@@ -61,7 +64,10 @@ class _BottomNavigationState extends State<BottomNavigation> {
                 _currentPage = _homeScreen;
               else if (_selectedTab == 1)
                 _currentPage = _classesScreen;
-              else if (_selectedTab == 2) _currentPage = _inputScreen;
+              else if (_selectedTab == 2)
+                _currentPage = _inputScreen;
+              else
+                _currentPage = _attdScreen;
             });
           },
           items: [
@@ -101,7 +107,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
             ),
             BottomNavigationBarItem(
               icon: SvgPicture.asset(
-                "assets/icons/comment.svg",
+                "assets/icons/attendence.svg",
                 width: 35.0,
                 color: _selectedTab == 3
                     ? Theme.of(context).colorScheme.secondary
