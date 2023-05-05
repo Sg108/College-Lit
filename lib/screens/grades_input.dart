@@ -324,7 +324,7 @@ class _GradesInputState extends State<GradesInput> {
               ],
             ),
           ),
-          SizedBox(height: 45.0),
+          SizedBox(height: 20.0),
 
           ElevatedButton(
             onPressed: () async {
@@ -358,7 +358,7 @@ class _GradesInputState extends State<GradesInput> {
             },
             child: Text('Recommendations Using Collaborative Filtering'),
           ),
-          SizedBox(height: 25.0),
+          SizedBox(height: 5.0),
           ElevatedButton(
             onPressed: () async {
               showDialog(
