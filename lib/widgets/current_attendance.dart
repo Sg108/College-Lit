@@ -38,7 +38,7 @@ class _CurrentAttendanceState extends State<CurrentAttendance> {
   final CourseList = semcourses.Courses;
   int sem = 0;
   bool init = true;
-  Random random = new Random();
+  final percentages = semcourses.percentage;
   List allSemCourses = [];
   void initState() {
     super.initState();
@@ -49,12 +49,10 @@ class _CurrentAttendanceState extends State<CurrentAttendance> {
     if (init) {
       sem = Provider.of<Student>(context).semester;
       for (int i = 0; i < CourseList[sem]!['core']!.length; i++) {
-        allSemCourses
-            .add([CourseList[sem]!['core']![i], random.nextInt(70) + 30]);
+        allSemCourses.add([CourseList[sem]!['core']![i], percentages[i]]);
       }
       for (int i = 0; i < CourseList[sem]!['elective']!.length; i++) {
-        allSemCourses
-            .add([CourseList[sem]!['elective']![i], random.nextInt(70) + 30]);
+        allSemCourses.add([CourseList[sem]!['elective']![i], percentages[i]]);
       }
       init = false;
     }
