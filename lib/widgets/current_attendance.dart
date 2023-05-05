@@ -1,8 +1,12 @@
+import 'package:provider/provider.dart';
+import 'dart:math';
+import '../models/student_provider.dart';
 import '/constants.dart';
 import '/widgets/countdown_painter.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '/models/alert.dart';
+import '/models/courses.dart';
 
 class CurrentAttendance extends StatefulWidget {
   const CurrentAttendance({super.key});
@@ -31,14 +35,39 @@ List<Subject> Subjects = [
 
 class _CurrentAttendanceState extends State<CurrentAttendance> {
   final DateFormat dateFormat = DateFormat("hh:mm a");
+  final CourseList = semcourses.Courses;
+  int sem = 0;
+  bool init = true;
+  Random random = new Random();
+  List allSemCourses = [];
+  void initState() {
+    super.initState();
+  }
+
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (init) {
+      sem = Provider.of<Student>(context).semester;
+      for (int i = 0; i < CourseList[sem]!['core']!.length; i++) {
+        allSemCourses
+            .add([CourseList[sem]!['core']![i], random.nextInt(70) + 30]);
+      }
+      for (int i = 0; i < CourseList[sem]!['elective']!.length; i++) {
+        allSemCourses
+            .add([CourseList[sem]!['elective']![i], random.nextInt(70) + 30]);
+      }
+      init = false;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
       shrinkWrap: true,
-      itemCount: Subjects.length,
+      itemCount: allSemCourses.length,
       itemBuilder: (BuildContext context, int index) {
-        String subject = Subjects[index].sub as String;
-        double percent = (Subjects[index].pct)! / 100;
+        String subject = allSemCourses[index][0] as String;
+        double percent = allSemCourses[index][1] / 100;
         return Row(
           children: <Widget>[
             Container(
@@ -78,13 +107,17 @@ class _CurrentAttendanceState extends State<CurrentAttendance> {
                             size: 24.0,
                           ),
                           SizedBox(width: 20),
-                          Text(
-                            subject,
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 18.0,
+                          Container(
+                            width: 140,
+                            child: Text(
+                              subject,
+                              style: const TextStyle(
+                                  color: Colors.white, fontSize: 15),
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 4,
+                              softWrap: false,
                             ),
-                          ),
+                          )
                         ],
                       ),
                       SizedBox(height: 10.0),
@@ -111,7 +144,7 @@ class _CurrentAttendanceState extends State<CurrentAttendance> {
                         child: Row(
                           children: <Widget>[
                             Text(
-                              '${percent * 100}',
+                              '${(percent * 100).toStringAsFixed(1)}',
                               style: TextStyle(
                                 color: _getColor(context, percent),
                                 fontSize: 22.0,

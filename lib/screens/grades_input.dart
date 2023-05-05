@@ -193,7 +193,6 @@ class _GradesInputState extends State<GradesInput> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Text('${grades}'),
               Row(
                 children: [
                   Expanded(
@@ -294,7 +293,7 @@ class _GradesInputState extends State<GradesInput> {
                 },
                 child: Text('Recommendations Using Collaborative Filtering'),
               ),
-              SizedBox(height: 25.0),
+              SizedBox(height: 5.0),
               ElevatedButton(
                 onPressed: () async {
                   showDialog(
