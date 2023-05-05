@@ -23,14 +23,14 @@ class _registerState extends State<register> {
   final semesterController = TextEditingController();
   final enrollController = TextEditingController();
   void create() async {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return const Center(
-          child: CircularProgressIndicator(),
-        );
-      },
-    );
+    // showDialog(
+    //   context: context,
+    //   builder: (context) {
+    //     return const Center(
+    //       child: CircularProgressIndicator(),
+    //     );
+    //   },
+    // );
     if (passwordController.text == confirmpasswordController.text) {
       try {
         await FirebaseAuth.instance
@@ -38,7 +38,7 @@ class _registerState extends State<register> {
                 email: emailController.text, password: passwordController.text)
             .then((value) async {
           //print(value.user);
-          Navigator.of(context).pop();
+          //Navigator.of(context).pop();
 
           print("where");
           await FirebaseFirestore.instance
@@ -47,8 +47,8 @@ class _registerState extends State<register> {
               .set({
             "email": value.user?.email,
             "name": nameController.text,
-            "enroll": enrollController.text,
-            "semester": semesterController.text,
+            "enroll": int.parse(enrollController.text),
+            "semester": int.parse(semesterController.text),
             "batch": batchController.text,
             "id": value.user?.uid,
             "pic":
@@ -58,12 +58,12 @@ class _registerState extends State<register> {
           print("here");
         });
       } on FirebaseAuthException catch (e) {
-        Navigator.of(context).pop();
+        //Navigator.of(context).pop();
         showErrormsg(e.code);
         //print(e);
       }
     } else {
-      Navigator.of(context).pop();
+      //Navigator.of(context).pop();
 
       showErrormsg("passwords dont match");
     }
@@ -127,9 +127,9 @@ class _registerState extends State<register> {
                   const SizedBox(height: 15),
                   myTextField(batchController, 'batch', false),
                   const SizedBox(height: 15),
-                  myTextField(semesterController, 'semester', false),
+                  NumField(semesterController, 'semester', false),
                   const SizedBox(height: 15),
-                  myTextField(enrollController, 'enrollment number', false),
+                  NumField(enrollController, 'enrollment number', false),
                   const SizedBox(height: 15),
                   const SizedBox(height: 25),
                   MyButton(create, 'Create Account'),

@@ -41,6 +41,8 @@ dependencies:
   cloud_firestore:
   image_picker:
   flutter_svg: ^2.0.4
+  http:
+  convert: ^3.1.1
   # dev_dependencies:
   #   flutter_test:
   #     sdk:

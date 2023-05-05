@@ -11,7 +11,7 @@ import 'dart:io';
 
 class UpdateProfileScreen extends StatefulWidget {
   const UpdateProfileScreen({super.key});
-  static const routeName = '/update_profile';
+  static const String routeName = '/update_profile';
 
   @override
   State<UpdateProfileScreen> createState() => _UpdateProfileScreenState();
@@ -38,8 +38,9 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
       nameController.text = Provider.of<Student>(context).name;
       emailController.text = Provider.of<Student>(context).email;
       batchController.text = Provider.of<Student>(context).batch;
-      enrollController.text = Provider.of<Student>(context).enroll;
-      semesterController.text = Provider.of<Student>(context).semester;
+      enrollController.text = Provider.of<Student>(context).enroll.toString();
+      semesterController.text =
+          Provider.of<Student>(context).semester.toString();
 
       mount = false;
     }
@@ -62,8 +63,8 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
         .set({
       "email": emailController.text,
       "name": nameController.text,
-      "enroll": enrollController.text,
-      "semester": semesterController.text,
+      "enroll": int.parse(enrollController.text),
+      "semester": int.parse(semesterController.text),
       "batch": batchController.text,
       "pic": Provider.of<Student>(context, listen: false).pic
     }, SetOptions(merge: true));
@@ -74,8 +75,8 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
       nameController.text,
       emailController.text,
       batchController.text,
-      enrollController.text,
-      semesterController.text,
+      int.parse(enrollController.text),
+      int.parse(semesterController.text),
     );
   }
 
@@ -183,19 +184,19 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                   ),
                   Container(
                       margin: const EdgeInsets.symmetric(vertical: 10),
-                      child: TxtField(nameController, "Name", false)),
+                      child: myTextField(nameController, "Name", false)),
                   Container(
                       margin: const EdgeInsets.symmetric(vertical: 10),
-                      child: TxtField(emailController, "Email", false)),
+                      child: myTextField(emailController, "Email", false)),
                   Container(
                       margin: const EdgeInsets.symmetric(vertical: 10),
-                      child: TxtField(batchController, "Batch", false)),
+                      child: myTextField(batchController, "Batch", false)),
                   Container(
                       margin: const EdgeInsets.symmetric(vertical: 10),
-                      child: TxtField(semesterController, "Semester", false)),
+                      child: NumField(semesterController, "Semester", false)),
                   Container(
                       margin: const EdgeInsets.symmetric(vertical: 10),
-                      child: TxtField(
+                      child: NumField(
                           enrollController, "Enrollment Number", false)),
                   MyButton(() => {submit(context)}, "Save")
                 ],

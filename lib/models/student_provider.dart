@@ -8,8 +8,8 @@ class Student extends ChangeNotifier {
   String email = "abc@email.com";
   String pic =
       'https://steamuserimages-a.akamaihd.net/ugc/1658975992873119928/D51F3889E81F40389CD31A9D14CCB0E75431EC3D/?imw=512&&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false';
-  String enroll = "";
-  String semester = "";
+  int enroll = 1111111;
+  int semester = 0;
 
   void initiate(uid, mail) {
     id = uid;

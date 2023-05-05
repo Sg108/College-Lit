@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:provider/provider.dart';
 import '../models/student_provider.dart';
+import '../screens/update_profile_screen.dart';
 
 class Header extends StatelessWidget {
   const Header({super.key});
@@ -12,25 +13,31 @@ class Header extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.all(10.0),
       child: ListTile(
-        leading: SvgPicture.asset(
-          "assets/icons/grad_cap.png",
-          height: 70.0,
-        ),
-        title: const Text(
-          'My College',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 30.0,
-            fontWeight: FontWeight.bold,
+          leading: SvgPicture.asset(
+            "assets/icons/grad_cap.png",
+            height: 70.0,
           ),
-          textAlign: TextAlign.center,
-        ),
-        trailing: CircleAvatar(
-          radius: 25.0,
-          backgroundImage: NetworkImage('${Provider.of<Student>(context).pic}'),
-          //fit: BoxFit.contain
-        ),
-      ),
+          title: const Text(
+            'My College',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 30.0,
+              fontWeight: FontWeight.bold,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          trailing: TextButton(
+            onPressed: () => {
+              Navigator.of(context).pushNamed(UpdateProfileScreen.routeName)
+            },
+            child: CircleAvatar(
+              radius: 25.0,
+              backgroundImage:
+                  NetworkImage('${Provider.of<Student>(context).pic}'),
+
+              //fit: BoxFit.contain
+            ),
+          )),
     );
   }
 }
