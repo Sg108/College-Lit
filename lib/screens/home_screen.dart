@@ -19,8 +19,11 @@ class HomeScreen extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 30.0),
           child: Center(
               child: Text(
-            'hi ${Provider.of<Student>(context).name}',
-            style: TextStyle(color: Colors.white),
+            'Hi ${Provider.of<Student>(context).name}',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 20.0,
+            ),
           )),
         ),
         SizedBox(height: 30.0),
