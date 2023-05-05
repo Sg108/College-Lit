@@ -51,7 +51,7 @@ class WelcomeScreenState extends State<WelcomeScreen> {
                     "College Bytes",
                     style: TextStyle(
                         color: Colors.white,
-                        fontSize: 30.0,
+                        fontSize: 25.0,
                         fontWeight: FontWeight.bold,
                         letterSpacing: 1.1),
                   )
