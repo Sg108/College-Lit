@@ -21,12 +21,12 @@ class Subject {
 }
 
 List<Subject> Subjects = [
-  Subject('Algorithms', 72),
-  Subject('Probability', 68),
-  Subject('Life Skills', 54),
-  Subject('Digital Systems', 88),
-  Subject('Algorithms Lab', 50),
-  Subject('EVS', 100)
+  Subject('Adv. Blockchain', 72),
+  Subject('Big Data', 68),
+  Subject('IOT Analytics', 54),
+  Subject('IRSW', 88),
+  Subject('IOT Lab', 50),
+  Subject('Deep Learning', 100)
 ];
 
 class _CurrentAttendanceState extends State<CurrentAttendance> {

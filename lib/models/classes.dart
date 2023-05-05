@@ -11,27 +11,27 @@ class Classes {
 
 List<Classes> classes = [
   Classes(
-    subject: "Math",
-    type: "Online Class",
-    teacherName: "Julie Raybon",
-    time: DateTime.parse("2023-05-04 12:30:00"),
+    subject: "Adv. Blockchain",
+    type: "FF7",
+    teacherName: "Naveen Kumar",
+    time: DateTime.parse("2023-05-06 09:00:00"),
   ),
   Classes(
-    subject: "Physics",
-    type: "Online Class",
-    teacherName: "Robert Murray",
-    time: DateTime.parse("2023-05-05 14:00:00"),
+    subject: "IOT Analytics",
+    type: "G5",
+    teacherName: "Amarjeet Kaur",
+    time: DateTime.parse("2023-05-06 10:15:00"),
   ),
   Classes(
-    subject: "German",
-    type: "Online Class",
-    teacherName: "Mary Peterson",
-    time: DateTime.parse("2023-05-05 21:30:00"),
+    subject: "Big Data",
+    type: "FF5",
+    teacherName: "Sulabh Tyagi",
+    time: DateTime.parse("2023-05-06 14:30:00"),
   ),
   Classes(
-    subject: "History",
+    subject: "IRSW",
     type: "Online Class",
-    teacherName: "Jim Brooke",
+    teacherName: "Neetu Sardana",
     time: DateTime.parse("2023-05-06 17:30:00"),
   ),
 ];
